@@ -5,61 +5,89 @@
 // - Prendendo come riferimento il layout di esempio presente nell’html, stampiamo tutte le card del nostro team.
 // - Utilizziamo poi gli input presenti nella pagina per permettere all’utente di aggiungere nuovi membri del team.
 // VARIABILI GLOBALI
-var cardCont = document.querySelector(".team-container");
+var TeamCont = document.querySelector(".team-container");
 var cardBox = document.querySelector(".card-image");
 var cardText = document.querySelector(".card-text")
+
 let img;
 let h3;
 
 // creo l'array con i 6 oggetti del team inseriti
 const arrTeam = [
-    {
-        "nome" : addName('Wayne Barnett'),
-        "ruolo": 'Founder & CEO',
-        "immagine": addImg("img/angela-caroll-chief-editor.jpg")
-        
+    {   
+        "immagine":"img/wayne-barnett-founder-ceo.jpg",
+        "nome" : 'Wayne Barnett',
+        "ruolo": 'Founder & CEO'
     },
-
+    
     {
+        "immagine":"img/angela-caroll-chief-editor.jpg",
         "nome" : 'Angela Carol',
-        "ruolo": 'Chief Editor',
-        // "immagine": add_img("img/angela-caroll-chief-editor.jpg")
+        "ruolo": 'Chief Editor'
     },
 
     {
+        "immagine":"img/walter-gordon-office-manager.jpg",
         "nome" : 'Walter Gordon',
-        "ruolo": 'Office Manager',
-        // "immagine": add_img("img/angela-caroll-chief-editor.jpg")
+        "ruolo": 'Office Manager'
     },
 
     {
+        "immagine":"img/angela-lopez-social-media-manager.jpg",
         "nome" : 'Angela Lopez',
-        "ruolo": 'Social Media Manager',
-        // "immagine": add_img("img/angela-caroll-chief-editor.jpg")
+        "ruolo": 'Social Media Manager'
     },
 
     {
+        "immagine":"img/scott-estrada-developer.jpg",
         "nome" : 'Scoot Estrada',
-        "ruolo": 'Developer',
-        // "immagine": add_img("img/angela-caroll-chief-editor.jpg")
+        "ruolo": 'Developer'
     },
 
     {
+        "immagine":"img/barbara-ramos-graphic-designer.jpg",
         "nome" : 'Barbara Ramos',
-        "ruolo": 'Graphic Designer',
-        // "immagine": add_img("img/angela-caroll-chief-editor.jpg")
-    }
+        "ruolo": 'Graphic Designer'
+    },
+
 
 ];
 // stampo il contenuto dell'array log
 console.log(arrTeam);
 
-for (let i = 0; i < arrTeam; i++) {
+
+
+
+for (let i = 0; i < arrTeam.length; i++) {
+    let dataName="";
+    let dataRole="";
+    let dataImg="";
     let objTeam = arrTeam[i];
     
     for (let key in objTeam) {
         console.log((key, objTeam[key]));
+        dataName=arrTeam[i].nome;
+        dataRole=arrTeam[i].ruolo;
+        dataImg=arrTeam[i].immagine;
+
+
     }
+    TeamCont.innerHTML += `
+        <div class="team-card">
+            <div class="card-image">
+                <img
+                    src="${dataImg}"
+                    alt="${dataName}"
+                />
+                </div>
+                <div class="card-text">
+                <h3>${dataName}</h3>
+                <p>${dataRole}</p>
+                </div>
+            </div>
+        </div>`
+
+    
 }
  
 
@@ -71,11 +99,19 @@ for (let i = 0; i < arrTeam; i++) {
 
 
 // FUNZIONI
-function addName(nome, cognome) {
+function addName(nome) {
     var name = document.createElement('h3');
-    name.append(nome, cognome);
-    cardText.appendChild(h3);
-    return h3
+    name.append(nome);
+    cardText.appendChild(name);
+    return name
+
+}
+
+function addRole(ruolo) {
+    var role = document.createElement('p');
+    role.append(ruolo);
+    cardText.appendChild(role);
+    return role
 
 }
 
