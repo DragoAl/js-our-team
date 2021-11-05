@@ -9,8 +9,49 @@ var TeamCont = document.querySelector(".team-container");
 var cardBox = document.querySelector(".card-image");
 var cardText = document.querySelector(".card-text")
 
+// VAR INPUT
+const addMemberBtn = document.getElementById("addMemberButton");
+
+
 let img;
 let h3;
+
+//  ADD MEMBER
+addMemberBtn.addEventListener("click", 
+    function () {
+
+        let  inputName = document.getElementById("name").value;
+        let  inputRole = document.getElementById("role").value;
+        let  inputImg = document.getElementById("image").value;
+        // console.log(inputName);
+        // console.log(inputRole);
+        // console.log(inputImg);
+        let newMember = {
+            "immagine":(inputImg),
+            "nome" : (inputName),
+            "ruolo": (inputRole)            
+        };
+
+        console.log(newMember);
+        arrTeam.push(newMember);
+        console.log(arrTeam);
+        
+        TeamCont.innerHTML += `
+        <div class="team-card">
+            <div class="card-image">
+                <img
+                    src="${inputImg}"
+                    alt="${inputName}"
+                />
+                </div>
+                <div class="card-text">
+                <h3>${inputName}</h3>
+                <p>${inputRole}</p>
+                </div>
+            </div>
+        </div>`
+    }
+);
 
 // creo l'array con i 6 oggetti del team inseriti
 const arrTeam = [
@@ -55,9 +96,6 @@ const arrTeam = [
 // stampo il contenuto dell'array log
 console.log(arrTeam);
 
-
-
-
 for (let i = 0; i < arrTeam.length; i++) {
     let dataName="";
     let dataRole="";
@@ -89,12 +127,6 @@ for (let i = 0; i < arrTeam.length; i++) {
 
     
 }
- 
-
-
-
-
- 
 
 
 
